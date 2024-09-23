@@ -19,16 +19,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -40,29 +34,27 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
 
-          const Column( 
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+           Column( 
           children: [
-            SizedBox(height: 40),
+            SizedBox(height: 30),
 
-
-            Row(
-            crossAxisAlignment: CrossAxisAlignment.center, 
+            const Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
-                radius: 20,
+                radius: 25,
                 backgroundImage: AssetImage('imagens/ball.png'),
               ),
-              const SizedBox(width: 10), 
+              SizedBox(width: 12), 
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start, 
-                children: const [
+                children: [
                   Text(
                     'Volley',
                     style: TextStyle(
                       fontFamily: 'ConcertOne',
-                      fontSize: 40,
+                      fontSize: 45,
                       color: Colors.white,
                     ),
                   ),
@@ -70,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     'do fim de semana',
                     style: TextStyle(
                       fontFamily: 'ConcertOne',
-                      fontSize: 12,
+                      fontSize: 15,
                       color: Colors.white,
                     ),
                   ),
@@ -78,18 +70,52 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-
-
-
-            SizedBox(height: 20),
-            Times(time: 'Sicranos', sizetime: '3'),
-            Times(time: 'Autoconvidados', sizetime: '3',),
-            Times(time: 'Ziraldos', sizetime: '4',),
-            Times(time: 'Sparrings', sizetime: '5',),
-
-            SizedBox(height: 3),
-            ],
           ),
+            
+          const SizedBox(height: 100),
+
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+           Padding(padding: const EdgeInsets.only(left: 10),
+           child: RotatedBox(
+            quarterTurns: 3, 
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.5),
+                border: Border.all(color: Colors.white, width: 2),
+              ),
+            padding: const EdgeInsets.symmetric(horizontal: 65),
+            child: const Text(
+              'TIMES',
+              style: TextStyle(
+                fontFamily: 'ConcertOne',
+                fontSize: 60,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                ),
+                
+              ),
+          ),
+          ),
+           ), 
+           
+
+
+          const Expanded(child: Column(
+              children: [
+                Times(time: 'Sicranos', sizetime: '3'),
+                Times(time: 'Autoconvidados', sizetime: '3',),
+                Times(time: 'Ziraldos', sizetime: '4',),
+                Times(time: 'Sparrings', sizetime: '5',),
+              ]
+            ),),
+             
+          
+          ],
+          ),
+          ],
+          ),
+
+          const SizedBox(height: 35),
 
           ElevatedButton(
               onPressed: () {
@@ -97,7 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             style: ElevatedButton.styleFrom( 
               backgroundColor: const Color(0xff00ADC3),// Cor de fundo // Cor do texto
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12), // Padding
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12), // Padding
+              minimumSize: const Size(250, 60),
               shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10), // Bordas arredondadas
               ),
@@ -105,19 +132,23 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text(
             'Jogo Casado',
             style: TextStyle(
-              fontSize: 18,
-              color:  Colors.white, // Tamanho da fonte
+              fontSize: 30,
+              color:  Colors.white,
+              fontFamily: 'ConcertOne', // Tamanho da fonte
             ),
             ),
           ),
             
+            const SizedBox(height: 20),
+
             ElevatedButton(
               onPressed: () {
             // Ação ao clicar
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xff2B4A8E), // Cor de fundo // Cor do texto
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12), // Padding
+              padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 12), // Padding
+              minimumSize: const Size(250, 60),
               shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
                side: const BorderSide( // Adiciona a borda branca
@@ -129,8 +160,9 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text(
             'Iniciar',
             style: TextStyle(
-              fontSize: 20,
-              color:  Colors.white, // Tamanho da fonte
+              fontSize: 40,
+              color:  Colors.white,
+              fontFamily: 'ConcertOne', // Tamanho da fonte
             ),
             ),
             ),
@@ -166,22 +198,25 @@ class Times extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
       time,
       style: TextStyle(
         fontFamily: 'ConcertOne',
-        fontSize: 35,
+        fontSize: 40,
         color: Colors.yellow[500],
       ),
       ),
-      SizedBox(width: 5),
+      const SizedBox(width: 15),
       Text(
       sizetime,
       style: const TextStyle(
         fontFamily: 'ConcertOne',
-        fontSize: 45,
+        fontSize: 60,
         color: Color(0xff2B4A8E),
         fontWeight: FontWeight.bold,
       ),
@@ -192,7 +227,7 @@ class Times extends StatelessWidget {
         'Jogadores',
         style: TextStyle(
           fontFamily: 'ConcertOne',
-          fontSize: 15,
+          fontSize: 10,
           color: Color(0xff2B4A8E),
           fontWeight: FontWeight.bold,
           ),
@@ -200,6 +235,7 @@ class Times extends StatelessWidget {
     ),
     
     ]
+      ),
     );
   }
 }
